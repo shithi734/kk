@@ -1,0 +1,38 @@
+# Database Schema for apuSir Project
+
+This project uses a MySQL database named `user_data` with a single table `users` to store user registration and login information.
+
+## SQL Code to Create Database and Table
+
+```sql
+-- Create the database
+CREATE DATABASE IF NOT EXISTS user_data;
+USE user_data;
+
+-- Create the users table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    gender ENUM('Male', 'Female', 'Other') NOT NULL,
+    address TEXT NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    mobile VARCHAR(20) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+```
+
+## Table Description
+- `id`: Auto-incremented unique user ID
+- `name`: User's full name
+- `age`: User's age
+- `gender`: User's gender (Male, Female, Other)
+- `address`: User's address
+- `email`: User's email (must be unique)
+- `mobile`: User's mobile number
+- `password`: Hashed password
+
+## Usage
+- Registration inserts a new row into `users`.
+- Login checks the `email` and verifies the hashed `password`.
+- Profile displays user information from the `users` table.
